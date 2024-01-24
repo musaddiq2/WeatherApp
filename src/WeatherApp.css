@@ -1,4 +1,4 @@
-.container{
+.weather-card{
    display: inline;
    flex-direction: column;
    justify-content: center;

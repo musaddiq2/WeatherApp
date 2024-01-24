@@ -27,7 +27,7 @@ function WeatherApp() {
 
   return (
     <div>
-       <div className='container'> 
+       <div className='weather-card'> 
       <h1>Weather App</h1>
       <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder='Enter City and Search'/>
       <button onClick={fetchData}>Search</button>
