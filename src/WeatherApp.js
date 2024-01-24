@@ -29,13 +29,13 @@ function WeatherApp() {
     <div>
        <div className='container'> 
       <h1>Weather App</h1>
-      <input type="text" value={city} onChange={(e) => setCity(e.target.value)} />
+      <input type="text" value={city} onChange={(e) => setCity(e.target.value)} placeholder='Enter City and Search'/>
       <button onClick={fetchData}>Search</button>
       </div>
       {loading && <p>Loading data...</p>}
       {error && <p>{error}</p>}
       {weatherData && (
-        <div className="weather-card">
+        <div className="weather-cards">
           <h2>Temperature: {weatherData.current.temp_c}°C</h2>
           <h2>Humidity: {weatherData.current.humidity}%</h2>
           <h2>Condition: {weatherData.current.condition.text}</h2>
