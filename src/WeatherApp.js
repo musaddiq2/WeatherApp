@@ -6,7 +6,7 @@ function WeatherApp() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+ 
   const fetchData = async () => {
     setLoading(true);
     setError(null);
@@ -23,9 +23,9 @@ function WeatherApp() {
       console.log(response.data); // Log the entire response
       setWeatherData(response.data);
     } catch (error) {
-        alert("Failed to fetch weather data");
-      console.error('Failed to fetch weather data:', error);
-      setError('Failed to fetch weather data');
+      alert("Failed to fetch weather data");
+      console.error("Failed to fetch weather data:", error);
+      setError("Failed to fetch weather data");
     }
     setLoading(false);
   };
@@ -46,10 +46,14 @@ function WeatherApp() {
       {error && <p>{error}</p>}
       {weatherData && (
         <div className="weather-cards">
-          <h2>Temperature: {weatherData.current.temp_c}°C</h2>
-          <h2>Humidity: {weatherData.current.humidity}%</h2>
-          <h2>Condition: {weatherData.current.condition.text}</h2>
-          <h2>Wind Speed: {weatherData.current.wind_kph} kph</h2>
+          <h2>Temperature:</h2>
+          <p>{weatherData.current.temp_c}°C</p>
+          <h2>Humidity:</h2>
+          <p> {weatherData.current.humidity}%</p>
+          <h2>Condition:</h2>
+          <p> {weatherData.current.condition.text}</p>
+          <h2>Wind Speed: </h2>
+          <p>{weatherData.current.wind_kph} kph</p>
         </div>
       )}
     </div>
