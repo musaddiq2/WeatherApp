@@ -6,7 +6,14 @@ function WeatherApp() {
   const [weatherData, setWeatherData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
- 
+  const Weathercard = ({ title, data }) => {
+    return (
+      <div className="weather-card">
+        <h3>{title}</h3>
+        <p>{data}</p>
+      </div>
+    );
+  };
   const fetchData = async () => {
     setLoading(true);
     setError(null);
@@ -31,31 +38,41 @@ function WeatherApp() {
   };
 
   return (
-    <div>
-      <div className="weather-card">
-        <h1>Weather App</h1>
-        <input
-          type="text"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-          placeholder="Enter City and Search"
-        />
-        <button onClick={fetchData}>Search</button>
+    <div className="App">
+      <h1>Weather App</h1>
+      <div className="searchBar">
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        placeholder="Enter City and Search"
+      />
+      <button onClick={fetchData}>Search</button>
       </div>
-      {loading && <p>Loading data...</p>}
-      {error && <p>{error}</p>}
-      {weatherData && (
-        <div className="weather-cards">
-          <h2>Temperature:</h2>
-          <p>{weatherData.current.temp_c}°C</p>
-          <h2>Humidity:</h2>
-          <p> {weatherData.current.humidity}%</p>
-          <h2>Condition:</h2>
-          <p> {weatherData.current.condition.text}</p>
-          <h2>Wind Speed: </h2>
-          <p>{weatherData.current.wind_kph} kph</p>
-        </div>
-      )}
+      <div className="weather-display">
+        {loading && <p>Loading data...</p>}
+        {error && <p>{error}</p>}
+        {!loading && weatherData && (
+          <div className="weather-cards">
+            <Weathercard
+              title="Temperature:"
+              data={`${weatherData.current.temp_c}°C`}
+            />
+            <Weathercard
+              title="Humidity:"
+              data={`${weatherData.current.humidity}%`}
+            />
+            <Weathercard
+              title="Condition:"
+              data={`${weatherData.current.condition.text}`}
+            />
+            <Weathercard
+              title="Speed:"
+              data={`${weatherData.current.wind_kph} kph`}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
